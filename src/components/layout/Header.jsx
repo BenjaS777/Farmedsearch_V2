@@ -138,7 +138,7 @@ const Header = () => {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="bg-primary text-primary-foreground shadow-md sticky top-0 z-50"
+        className="bg-background/80 backdrop-blur-lg border-b border-white/10 shadow-md sticky top-0 z-50"
       >
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <div className="flex items-center gap-4">

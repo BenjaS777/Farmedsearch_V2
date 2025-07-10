@@ -115,7 +115,7 @@ const MiBotiquin = () => {
       >
         <BackButton />
         <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-text-title font-heading">
+        <h1 className="text-3xl md:text-4xl font-bold text-foreground font-heading">
             Hola, {profile?.full_name || user?.email || 'Usuario'}
           </h1>
           <p className="text-muted-foreground mt-2 text-lg">Te doy la bienvenida a tu botiquín virtual.</p>
@@ -123,13 +123,13 @@ const MiBotiquin = () => {
 
         <div className="flex flex-col lg:flex-row gap-8">
           <main className="flex-grow lg:w-2/3">
-            <Card className="shadow-soft-lg">
+          <Card className="bg-card border border-border/50 shadow-lg">
               <CardHeader className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
                   <CardTitle className="text-2xl font-bold font-heading">Mi Botiquín</CardTitle>
                   <CardDescription>Aquí encontrarás todos tus medicamentos guardados.</CardDescription>
                 </div>
-                <Button onClick={() => navigate('/')} className="w-full sm:w-auto">
+                <Button onClick={() => navigate('/')} className="w-full sm:w-auto bg-secondary text-secondary-foreground hover:bg-secondary/90">
                   <Search className="mr-2 h-4 w-4" /> Buscar y Añadir
                 </Button>
               </CardHeader>

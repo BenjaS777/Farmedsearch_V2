@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
@@ -49,78 +48,176 @@ const Home = () => {
   const isLandingPageVisible = !medicationData && !isLoading && !error;
 
   return (
-    <>
-      <Header />
-      <Hero 
-        onConsultationStart={handleConsultationStart}
-        onConsultationSuccess={handleConsultationSuccess}
-        onConsultationError={handleConsultationError}
-        isLoading={isLoading} 
-      />
-      <AnimatePresence mode="wait">
-        {isLandingPageVisible && (
-          <motion.div
-            key="landing-content"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <KeyBenefits />
-            <HowItWorks />
-            <Testimonials />
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      {/* Header con efecto glassmorfismo */}
+      <div className="glass-nav sticky top-0 z-50">
+        <Header />
+      </div>
       
-      <ResultsSection 
-        medicationData={medicationData} 
-        isLoading={isLoading} 
-        error={error}
-      />
-      
-      <PricingSection />
+      {/* Contenido principal con espaciado mejorado */}
+      <div className="relative">
+        {/* Hero Section con tarjeta flotante */}
+        <div className="container mx-auto px-4 py-12">
+          <div className="max-w-4xl mx-auto">
+            <div className="card-float p-8 mb-12">
+              <Hero 
+                onConsultationStart={handleConsultationStart}
+                onConsultationSuccess={handleConsultationSuccess}
+                onConsultationError={handleConsultationError}
+                isLoading={isLoading} 
+              />
+            </div>
+          </div>
+        </div>
 
-      <FAQ />
-      
-      <AnimatePresence mode="wait">
-        {isLandingPageVisible && (
-          <motion.div
-            key="landing-cta"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <FinalCTA />
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <Footer />
-    </>
+        {/* Secciones de contenido con animaciones */}
+        <AnimatePresence mode="wait">
+          {isLandingPageVisible && (
+            <motion.div
+              key="landing-content"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="space-y-16"
+            >
+              {/* Sección de beneficios clave */}
+              <div className="container mx-auto px-4">
+                <div className="card-float p-8">
+                  <KeyBenefits />
+                </div>
+              </div>
+
+              {/* Sección de cómo funciona */}
+              <div className="container mx-auto px-4">
+                <div className="card-float p-8">
+                  <HowItWorks />
+                </div>
+              </div>
+
+              {/* Sección de testimonios */}
+              <div className="container mx-auto px-4">
+                <div className="card-float p-8">
+                  <Testimonials />
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        
+        {/* Sección de resultados con estilo mejorado */}
+        <div className="container mx-auto px-4 py-8">
+          <div className="card-float p-8">
+            <ResultsSection 
+              medicationData={medicationData} 
+              isLoading={isLoading} 
+              error={error}
+            />
+          </div>
+        </div>
+        
+        {/* Sección de precios con efecto especial */}
+        <div className="container mx-auto px-4 py-8">
+          <div className="relative">
+            {/* Efecto de resplandor de fondo */}
+            <div className="absolute inset-0 bg-teal-500 rounded-xl blur-3xl opacity-10"></div>
+            <div className="card-float p-8 relative">
+              <PricingSection />
+            </div>
+          </div>
+        </div>
+
+        {/* Sección de FAQ */}
+        <div className="container mx-auto px-4 py-8">
+          <div className="card-float p-8">
+            <FAQ />
+          </div>
+        </div>
+        
+        {/* CTA final con animación */}
+        <AnimatePresence mode="wait">
+          {isLandingPageVisible && (
+            <motion.div
+              key="landing-cta"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="container mx-auto px-4 py-8"
+            >
+              <div className="card-float p-8">
+                <FinalCTA />
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Footer con estilo mejorado */}
+        <div className="mt-16">
+          <div className="glass-nav border-t border-slate-700">
+            <Footer />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
-
 function App() {
   useEffect(() => {
-    document.documentElement.classList.remove('dark');
-    document.documentElement.classList.add('light');
+    // Forzar tema oscuro para toda la aplicación
+    document.documentElement.classList.remove('light');
+    document.documentElement.classList.add('dark');
+    
+    // Aplicar estilos globales al body
+    document.body.style.background = 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)';
+    document.body.style.minHeight = '100vh';
   }, []);
 
   return (
     <Router>
-      <div className="flex flex-col min-h-screen bg-background">
+      <div className="flex flex-col min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/registro" element={<Register />} />
-            <Route path="/iniciar-sesion" element={<Login />} />
+            <Route 
+              path="/registro" 
+              element={
+                <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+                  <div className="container mx-auto px-4 py-12">
+                    <div className="card-float p-8 max-w-md mx-auto">
+                      <Register />
+                    </div>
+                  </div>
+                </div>
+              } 
+            />
+            <Route 
+              path="/iniciar-sesion" 
+              element={
+                <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+                  <div className="container mx-auto px-4 py-12">
+                    <div className="card-float p-8 max-w-md mx-auto">
+                      <Login />
+                    </div>
+                  </div>
+                </div>
+              } 
+            />
             <Route 
               path="/mi-botiquin" 
               element={
                 <ProtectedRoute>
-                  <MiBotiquin />
+                  <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+                    <div className="glass-nav sticky top-0 z-50">
+                      <Header />
+                    </div>
+                    <div className="container mx-auto px-4 py-12">
+                      <div className="card-float p-8">
+                        <MiBotiquin />
+                      </div>
+                    </div>
+                  </div>
                 </ProtectedRoute>
               } 
             />
@@ -128,7 +225,16 @@ function App() {
               path="/mi-cuenta" 
               element={
                 <ProtectedRoute>
-                  <MiCuenta />
+                  <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+                    <div className="glass-nav sticky top-0 z-50">
+                      <Header />
+                    </div>
+                    <div className="container mx-auto px-4 py-12">
+                      <div className="card-float p-8 max-w-2xl mx-auto">
+                        <MiCuenta />
+                      </div>
+                    </div>
+                  </div>
                 </ProtectedRoute>
               } 
             />
@@ -136,7 +242,16 @@ function App() {
               path="/admin"
               element={
                 <AdminRoute>
-                  <Admin />
+                  <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+                    <div className="glass-nav sticky top-0 z-50">
+                      <Header />
+                    </div>
+                    <div className="container mx-auto px-4 py-12">
+                      <div className="card-float p-8">
+                        <Admin />
+                      </div>
+                    </div>
+                  </div>
                 </AdminRoute>
               }
             />
@@ -149,3 +264,4 @@ function App() {
 }
 
 export default App;
+

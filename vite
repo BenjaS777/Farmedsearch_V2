@@ -1,0 +1,34 @@
+
+✘ [ERROR] Expected ";" but found "Ctrl"
+
+    vite.config.js:13:31:
+      13 │ ```4.  **Guarda el archivo** (`Ctrl + S` o `Cmd + S`).
+         │                                ~~~~
+         ╵                                ;
+
+failed to load config from /Users/beenjaaasf/Downloads/código farmedsearch/vite.config.js
+error when starting dev server:
+Error: Build failed with 1 error:
+vite.config.js:13:31: ERROR: Expected ";" but found "Ctrl"
+    at failureErrorWithLog (/Users/beenjaaasf/Downloads/código farmedsearch/node_modules/esbuild/lib/main.j
+    at failureErrorWithLog (/Users/beenjaaasf/Downloads/código farmedsearch/node_modules/esbuild/lib/main.js:1649:15)
+    at /Users/beenjaaasf/Downloads/código farmedsearch/node_modules/esbuild/lib/main.js:1058:25
+    at runOnEndCallbacks (/Users/beenjaaasf/Downloads/código farmedsearch/node_modules/esbuild/lib/main.js:
+    at runOnEndCallbacks (/Users/beenjaaasf/Downloads/código farmedsearch/node_modules/esbuild/lib/main.js:1484:45)
+    at buildResponseToResult (/Users/beenjaaasf/Downloads/código farmedsearch/node_modules/esbuild/lib/main
+    at buildResponseToResult (/Users/beenjaaasf/Downloads/código farmedsearch/node_modules/esbuild/lib/main.js:1056:7)
+    at /Users/beenjaaasf/Downloads/código farmedsearch/node_modules/esbuild/lib/main.js:1085:16
+    at responseCallbacks.<computed> (/Users/beenjaaasf/Downloads/código farmedsearch/node_modules/esbuild/l
+    at responseCallbacks.<computed> (/Users/beenjaaasf/Downloads/código farmedsearch/node_modules/esbuild/lib/main.js:703:9)
+    at handleIncomingPacket (/Users/beenjaaasf/Downloads/código farmedsearch/node_modules/esbuild/lib/main.
+    at handleIncomingPacket (/Users/beenjaaasf/Downloads/código farmedsearch/node_modules/esbuild/lib/main.js:762:9)
+    at Socket.readFromStdout (/Users/beenjaaasf/Downloads/código farmedsearch/node_modules/esbuild/lib/main
+    at Socket.readFromStdout (/Users/beenjaaasf/Downloads/código farmedsearch/node_modules/esbuild/lib/main.js:679:7)
+    at Socket.emit (node:events:518:28)
+    at addChunk (node:internal/streams/readable:561:12)npm run dev
+beenjaaasf@MacBook-Air-de-Benja código farmedsearch % > web-app@0.0.0 dev
+zsh: command not found: devbeenjaaasf@MacBook-Air-de-Benja código farmedsearch % > web-app@0.0.0 dev
+zsh: command not found: devbeenjaaasf@MacBook-Air-de-Benja código farmedsearch % > web-app@0.0.0 dev
+zsh: command not found: devbeenjaaasf@MacBook-Air-de-Benja código farmedsearch % > web-app@0.0.0 dev
+zsh: command not found: devbeenjaaasf@MacBook-Air-de-Benja código farmedsearch % > web-app@0.0.0 dev
+zsh: command not found: devbeenjaaasf@MacBook-Air-de-Benja código farmedsearch % > web-app@0.0.0 dev
