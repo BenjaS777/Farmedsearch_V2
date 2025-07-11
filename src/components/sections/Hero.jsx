@@ -79,39 +79,98 @@ const Hero = ({ onConsultationStart, onConsultationSuccess, onConsultationError,
         onConsultationStart();
 
         try {
+            console.log('🔍 PROD DEBUG - Iniciando búsqueda para:', nombreMedicamento);
+            console.log('🔍 PROD DEBUG - URL del webhook:', WEBHOOK_URL);
+            console.log('🔍 PROD DEBUG - Timestamp:', new Date().toISOString());
+
             const response = await fetch(WEBHOOK_URL, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'User-Agent': 'FarmedSearch/1.0'
+                },
                 body: JSON.stringify({ nombreMedicamento })
             });
 
-            let resultData;
+            console.log('🔍 PROD DEBUG - Response recibida:', {
+                status: response.status,
+                statusText: response.statusText,
+                ok: response.ok,
+                url: response.url,
+                type: response.type,
+                headers: Object.fromEntries(response.headers),
+                timestamp: new Date().toISOString()
+            });
+
             const responseText = await response.text();
-             if (!response.ok) {
-              let errorMessage = `Error HTTP: ${response.status}`;
-              try {
-                const errorJson = JSON.parse(responseText);
-                errorMessage = errorJson.message || errorJson.error || errorMessage;
-              } catch (parseError) {
-                errorMessage = "Error desconocido del servidor.";
-              }
-              throw new Error(errorMessage);
+            
+            console.log('🔍 PROD DEBUG - Respuesta cruda:', {
+                text: responseText,
+                length: responseText.length,
+                isEmpty: !responseText || responseText.trim() === '',
+                firstChars: responseText ? responseText.substring(0, 100) : 'N/A',
+                lastChars: responseText ? responseText.substring(responseText.length - 100) : 'N/A'
+            });
+
+            if (!response.ok) {
+                console.error('🚨 PROD DEBUG - Response no OK:', response.status, response.statusText);
+                let errorMessage = `Error HTTP: ${response.status}`;
+                try {
+                    const errorJson = JSON.parse(responseText);
+                    errorMessage = errorJson.message || errorJson.error || errorMessage;
+                    console.log('🔍 PROD DEBUG - Error JSON parseado:', errorJson);
+                } catch (parseError) {
+                    console.error('🚨 PROD DEBUG - Error parseando JSON de error:', parseError);
+                    errorMessage = "Error desconocido del servidor.";
+                }
+                throw new Error(errorMessage);
             }
-            
-            // PROTECCIÓN MEJORADA PARA DATOS DE RESPUESTA
-            const parsedResponse = JSON.parse(responseText);
-            const medicationInfo = parsedResponse.respuesta_json ? JSON.parse(parsedResponse.respuesta_json) : {};
-            
-            resultData = { 
-                nombreMedicamento, 
-                ...medicationInfo 
-            };
+
+            if (!responseText || responseText.trim() === '') {
+                console.error('🚨 PROD DEBUG - Respuesta vacía del servidor');
+                throw new Error('Respuesta vacía del servidor');
+            }
+
+            let resultData;
+            try {
+                console.log('🔍 PROD DEBUG - Intentando parsear respuesta JSON...');
+                const parsedResponse = JSON.parse(responseText);
+                console.log('🔍 PROD DEBUG - JSON parseado exitosamente:', parsedResponse);
+                
+                // Verificar si tiene la estructura con respuesta_json
+                if (parsedResponse.respuesta_json) {
+                    console.log('🔍 PROD DEBUG - Encontrada respuesta_json, parseando...');
+                    const medicationInfo = JSON.parse(parsedResponse.respuesta_json);
+                    console.log('🔍 PROD DEBUG - Medication info parseada:', medicationInfo);
+                    
+                    resultData = { 
+                        nombreMedicamento, 
+                        ...medicationInfo 
+                    };
+                } else {
+                    console.log('🔍 PROD DEBUG - No hay respuesta_json, usando respuesta directa');
+                    resultData = { 
+                        nombreMedicamento, 
+                        ...parsedResponse 
+                    };
+                }
+                
+                console.log('🔍 PROD DEBUG - Datos finales para mostrar:', resultData);
+                
+            } catch (parseError) {
+                console.error('🚨 PROD DEBUG - Error parseando JSON:', parseError);
+                console.error('🚨 PROD DEBUG - Texto que causó el error:', responseText);
+                throw new Error('Formato de respuesta inválido del webhook');
+            }
 
             // VERIFICACIÓN ADICIONAL DE DATOS VÁLIDOS
             if (!resultData || typeof resultData !== 'object') {
+                console.error('🚨 PROD DEBUG - Datos resultantes inválidos:', resultData);
                 throw new Error('Formato de respuesta inválido');
             }
 
+            console.log('✅ PROD DEBUG - Consulta exitosa, mostrando resultados');
             toast({ title: 'Consulta Exitosa', description: 'Resultados a continuación.', variant: 'default', className: 'bg-green-600 text-white' });
             onConsultationSuccess(resultData);
             
@@ -120,15 +179,25 @@ const Hero = ({ onConsultationStart, onConsultationSuccess, onConsultationError,
             setNombreMedicamento('');
             setTimeout(() => {
                 const resultsSection = document.getElementById('ficha-medicamento');
-                if (resultsSection) resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (resultsSection) {
+                    console.log('🔍 PROD DEBUG - Haciendo scroll a resultados');
+                    resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             }, 400);
 
         } catch (error) {
-            console.error('Error al enviar consulta:', error);
+            console.error('🚨 PROD DEBUG - Error completo:', {
+                message: error.message,
+                name: error.name,
+                stack: error.stack,
+                timestamp: new Date().toISOString()
+            });
+            
             toast({ title: 'Error en la Consulta', description: error.message || 'No se pudo conectar.', variant: 'destructive' });
             onConsultationError(error.message);
         } finally {
             setIsSubmitting(false);
+            console.log('🔍 PROD DEBUG - Proceso de búsqueda finalizado');
         }
     };
 
