@@ -77,11 +77,14 @@
       inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
   }
   
-  /* Tarjetas flotantes con glassmorfismo */
+  /* Tarjetas flotantes con glassmorfismo - ANCHOS MEJORADOS */
   .card-float {
-    @apply glass-card p-8 m-4 relative;
-    @apply transition-all duration-500 hover:transform hover:scale-[1.02];
+    @apply glass-card relative;
+    @apply transition-all duration-500 hover:transform hover:scale-[1.01];
     @apply shadow-navy-deep hover:shadow-float-hover;
+    /* PADDING MEJORADO PARA MAYOR ANCHO */
+    padding: 2rem 1.5rem;
+    margin: 1rem 0.5rem;
     animation: slideUp 0.6s ease-out;
   }
   
@@ -98,11 +101,9 @@
   /* Inputs con glassmorfismo - CORREGIDO PARA VISIBILIDAD */
   .input-glass {
     @apply w-full p-4 rounded-xl transition-all duration-300;
-    /* Fondo blanco translúcido para máxima legibilidad */
     background: rgba(255, 255, 255, 0.9) !important;
     backdrop-filter: blur(16px) !important;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    /* Texto oscuro para máximo contraste */
     color: #1f2937 !important;
     font-weight: 500 !important;
     box-shadow: 
@@ -161,14 +162,321 @@
   }
 }
 
-/* ===== RESPONSIVIDAD MÓVIL COMPLETA ===== */
+/* ===== CONTENEDORES GLOBALES MÁS ANCHOS ===== */
+
+.container {
+  max-width: 100% !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 100% !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+  
+  .card-float {
+    padding: 2.5rem 2rem !important;
+    margin: 1rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 100% !important;
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+  
+  .card-float {
+    padding: 3rem 2.5rem !important;
+    margin: 1.5rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 95% !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+  
+  .card-float {
+    padding: 3.5rem 3rem !important;
+    margin: 2rem 1rem !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 90% !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+  
+  .card-float {
+    padding: 4rem 3.5rem !important;
+    margin: 2rem 1rem !important;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 85% !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+  
+  .card-float {
+    padding: 4.5rem 4rem !important;
+    margin: 2rem 1rem !important;
+  }
+}
+
+/* ===== SECCIONES ESPECÍFICAS MÁS AMPLIAS ===== */
+
+/* 1. HEADER - Navegación */
+.glass-nav {
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+@media (min-width: 1024px) {
+  .glass-nav {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+}
+
+/* 2. HERO - Sección Principal */
+#inicio .card-float,
+#hero .card-float {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 3rem 2rem !important;
+}
+
+@media (min-width: 1024px) {
+  #inicio .card-float,
+  #hero .card-float {
+    padding: 4rem 3rem !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  #inicio .card-float,
+  #hero .card-float {
+    padding: 5rem 4rem !important;
+  }
+}
+
+/* 3. KEY BENEFITS - Beneficios */
+#benefits .card-float,
+#key-benefits .card-float {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+#benefits .grid,
+#key-benefits .grid {
+  max-width: 100% !important;
+  gap: 1.5rem !important;
+}
+
+@media (min-width: 1024px) {
+  #benefits .grid,
+  #key-benefits .grid {
+    gap: 2rem !important;
+  }
+}
+
+/* 4. PRICING - Planes */
+#pricing .card-float {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 3rem 2rem !important;
+}
+
+#pricing .grid {
+  max-width: 100% !important;
+  gap: 1.5rem !important;
+}
+
+@media (min-width: 1024px) {
+  #pricing .card-float {
+    padding: 4rem 3rem !important;
+  }
+  
+  #pricing .grid {
+    gap: 2rem !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  #pricing .grid {
+    gap: 2.5rem !important;
+  }
+}
+
+/* 5. TESTIMONIALS - Testimonios */
+#testimonials .card-float {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+#testimonials .grid {
+  max-width: 100% !important;
+  gap: 1.5rem !important;
+}
+
+@media (min-width: 1024px) {
+  #testimonials .grid {
+    gap: 2rem !important;
+  }
+}
+
+/* 6. FAQ - Preguntas Frecuentes */
+#faq .card-float {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* 7. RESULTS SECTION - Sección de Resultados */
+#ficha-medicamento .card-float,
+#results .card-float,
+.results-section .card-float {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 3rem 2rem !important;
+}
+
+#ficha-medicamento .grid,
+#results .grid,
+.results-section .grid {
+  max-width: 100% !important;
+  gap: 1.5rem !important;
+}
+
+@media (min-width: 768px) {
+  #ficha-medicamento .grid,
+  #results .grid,
+  .results-section .grid {
+    gap: 2rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  #ficha-medicamento .card-float,
+  #results .card-float,
+  .results-section .card-float {
+    padding: 4rem 3rem !important;
+  }
+  
+  #ficha-medicamento .grid,
+  #results .grid,
+  .results-section .grid {
+    gap: 2.5rem !important;
+  }
+}
+
+/* Tarjetas de resultados individuales */
+.result-card,
+.medication-card {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* 8. EMAIL SUBSCRIPTION - Suscripción */
+.email-subscription .card-float,
+#email-subscription .card-float {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* 9. FEEDBACK SECTION - Retroalimentación */
+.feedback-section .card-float,
+#feedback .card-float {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+/* 10. MODAL DE PLANES */
+.plans-modal .card-float,
+#plans-modal .card-float {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+.plans-modal .grid,
+#plans-modal .grid {
+  max-width: 100% !important;
+  gap: 1.5rem !important;
+}
+
+@media (min-width: 1024px) {
+  .plans-modal .grid,
+  #plans-modal .grid {
+    gap: 2rem !important;
+  }
+}
+
+/* 11. FORMULARIOS DE REGISTRO/LOGIN */
+.auth-form .card-float,
+#login .card-float,
+#register .card-float {
+  max-width: 600px !important;
+  width: 100% !important;
+}
+
+/* 12. MI BOTIQUÍN - Dashboard del Usuario */
+#mi-botiquin .card-float,
+.dashboard .card-float {
+  max-width: none !important;
+  width: 100% !important;
+}
+
+#mi-botiquin .grid,
+.dashboard .grid {
+  max-width: 100% !important;
+  gap: 1.5rem !important;
+}
+
+@media (min-width: 1024px) {
+  #mi-botiquin .grid,
+  .dashboard .grid {
+    gap: 2rem !important;
+  }
+}
+
+/* 13. FOOTER */
+footer .container {
+  max-width: 100% !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+@media (min-width: 1024px) {
+  footer .container {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+}
+
+/* ===== RESPONSIVIDAD MÓVIL COMPLETA MANTENIDA ===== */
 
 /* Móviles pequeños (320px - 480px) */
 @media (max-width: 480px) {
   .card-float {
-    @apply p-4 m-2;
-    margin-left: 0.5rem !important;
-    margin-right: 0.5rem !important;
+    padding: 1.5rem 1rem !important;
+    margin: 0.5rem !important;
+  }
+  
+  #ficha-medicamento .card-float,
+  #results .card-float,
+  .results-section .card-float {
+    padding: 1.5rem 1rem !important;
   }
   
   .glass-card {
@@ -188,14 +496,13 @@
   
   .input-glass {
     @apply p-3 text-base;
-    font-size: 16px !important; /* Evita zoom en iOS */
+    font-size: 16px !important;
   }
   
   .nav-link {
     @apply py-1.5 px-3 text-sm;
   }
   
-  /* Glow effects reducidos en móvil */
   .glow-aqua::before {
     @apply blur-lg opacity-10;
   }
@@ -204,7 +511,14 @@
 /* Móviles medianos (481px - 640px) */
 @media (max-width: 640px) {
   .card-float {
-    @apply p-5 m-3;
+    padding: 2rem 1.5rem !important;
+    margin: 0.75rem !important;
+  }
+  
+  #ficha-medicamento .card-float,
+  #results .card-float,
+  .results-section .card-float {
+    padding: 2rem 1.5rem !important;
   }
   
   .btn-primary {
@@ -217,15 +531,9 @@
   
   .input-glass {
     @apply p-3.5;
-    font-size: 16px !important; /* Evita zoom en iOS */
+    font-size: 16px !important;
   }
   
-  /* Contenedores responsivos */
-  .container {
-    @apply px-4;
-  }
-  
-  /* Tipografía móvil */
   h1 {
     @apply text-2xl leading-tight;
   }
@@ -241,23 +549,18 @@
 
 /* Tablets (641px - 768px) */
 @media (max-width: 768px) {
-  .card-float {
-    @apply p-6 m-3;
-  }
-  
   .glass-nav {
     @apply px-4 py-3;
   }
   
   .btn-primary:hover {
-    @apply scale-100; /* Reduce hover scale en tablets */
+    @apply scale-100;
   }
   
   .btn-secondary:hover {
     @apply scale-100;
   }
   
-  /* Grid responsivo para tarjetas */
   .grid-responsive {
     @apply grid-cols-1 gap-4;
   }
@@ -265,15 +568,10 @@
 
 /* Tablets grandes (769px - 1024px) */
 @media (max-width: 1024px) {
-  .card-float {
-    @apply p-7;
-  }
-  
   .nav-link {
     @apply px-3 py-2 text-sm;
   }
   
-  /* Navegación tablet */
   .nav-desktop {
     @apply hidden;
   }
@@ -304,7 +602,6 @@
     @apply opacity-0;
   }
   
-  /* Área táctil mínima de 44px */
   .btn-primary,
   .btn-secondary {
     min-height: 44px !important;
@@ -319,14 +616,20 @@
 /* Orientación landscape en móviles */
 @media (max-width: 896px) and (orientation: landscape) {
   .card-float {
-    @apply p-4 m-2;
+    padding: 1.5rem 2rem !important;
+    margin: 0.5rem !important;
+  }
+  
+  #ficha-medicamento .card-float,
+  #results .card-float,
+  .results-section .card-float {
+    padding: 1.5rem 2rem !important;
   }
   
   .glass-nav {
     @apply py-2;
   }
   
-  /* Reduce altura de elementos en landscape */
   .btn-primary,
   .btn-secondary {
     @apply py-2;
@@ -339,7 +642,6 @@
 
 /* Mejoras de accesibilidad móvil */
 @media (max-width: 640px) {
-  /* Focus visible mejorado */
   .btn-primary:focus,
   .btn-secondary:focus,
   .input-glass:focus {
@@ -347,12 +649,10 @@
     outline-offset: 2px !important;
   }
   
-  /* Espaciado táctil mejorado */
   .nav-link {
     @apply mb-1;
   }
   
-  /* Texto legible en móvil */
   .text-responsive {
     @apply text-base leading-relaxed;
   }
@@ -360,7 +660,6 @@
 
 /* Optimizaciones de rendimiento para móvil */
 @media (max-width: 768px) {
-  /* Reduce animaciones complejas */
   .card-float {
     animation: none !important;
   }
@@ -369,7 +668,6 @@
     animation: none !important;
   }
   
-  /* Simplifica sombras en móvil */
   .glass-card {
     box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.2) !important;
   }
@@ -378,7 +676,6 @@
     box-shadow: 0 2px 8px 0 rgba(20, 184, 166, 0.25) !important;
   }
   
-  /* Reduce blur en móvil para mejor rendimiento */
   .glass-nav {
     backdrop-filter: blur(8px) !important;
   }
