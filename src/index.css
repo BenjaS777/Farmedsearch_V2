@@ -500,13 +500,14 @@
     z-index: 10 !important;
   }
   
-  /* Iconos del hamburguesa visibles */
-  .hamburger-icon,
-  .menu-icon,
-  svg {
-    color: white !important;
-    stroke: white !important;
-    fill: white !important;
+  /* Solo afecta al icono del botón hamburguesa y a los iconos internos del menú */
+.hamburger-icon,
+.menu-icon,
+.hamburger-button svg,
+.mobile-menu svg {
+  color: white !important;
+  stroke: white !important;
+  fill: white !important;
   }
   
   /* Overlay del menú */
