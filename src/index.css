@@ -18,154 +18,96 @@
 }
 
 @layer components {
-  /* Glassmorfismo base */
-  .glass-card {
-    @apply bg-gradient-glass backdrop-blur-glass border border-white/10 rounded-2xl;
-    box-shadow: 
-      0 8px 32px 0 rgba(31, 38, 135, 0.37),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
-  }
-  
-  .glass-nav {
-    @apply bg-gradient-glass backdrop-blur-intense border-b border-white/10;
-    box-shadow: 
-      0 4px 6px -1px rgba(0, 0, 0, 0.1),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
-  }
-  
-  /* Botones con efectos glassmorfismo */
+  /* ===== BOTONES LIMPIOS SIN CAPAS ADICIONALES ===== */
   .btn-primary {
-    @apply relative bg-gradient-aqua text-white font-semibold py-4 px-8 rounded-xl;
-    @apply transition-all duration-300 transform hover:scale-105;
-    @apply border border-aqua-400/30 backdrop-blur-sm overflow-hidden;
-    box-shadow: 
-      0 4px 15px 0 rgba(20, 184, 166, 0.35),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
-  }
-  
-  .btn-primary::before {
-    content: '';
-    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent;
-    @apply transform -skew-x-12 -translate-x-full transition-transform duration-700;
-  }
-  
-  .btn-primary:hover::before {
-    @apply translate-x-full;
+    @apply bg-gradient-aqua text-white font-semibold py-4 px-8 rounded-xl;
+    @apply transition-all duration-300;
+    border: 1px solid rgba(20, 184, 166, 0.3);
   }
   
   .btn-primary:hover {
-    @apply shadow-aqua-glow-intense;
-    box-shadow: 
-      0 8px 25px 0 rgba(20, 184, 166, 0.5),
-      0 0 30px rgba(20, 184, 166, 0.4),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+    @apply brightness-110;
+    transform: translateY(-1px);
   }
   
   .btn-secondary {
-    @apply bg-navy-700/40 text-white font-medium py-3 px-6 rounded-lg;
-    @apply transition-all duration-300 hover:bg-navy-600/50 hover:scale-105;
-    @apply border border-white/10 backdrop-blur-sm;
-    box-shadow: 
-      0 2px 10px 0 rgba(15, 23, 42, 0.3),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+    @apply bg-slate-700 text-white font-medium py-3 px-6 rounded-lg;
+    @apply transition-all duration-300;
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
   
   .btn-secondary:hover {
-    box-shadow: 
-      0 4px 15px 0 rgba(15, 23, 42, 0.4),
-      0 0 20px rgba(100, 116, 139, 0.3),
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    @apply bg-slate-600;
+    transform: translateY(-1px);
   }
   
-  /* Tarjetas flotantes con glassmorfismo */
-  .card-float {
-    @apply glass-card p-8 m-4 relative;
-    @apply transition-all duration-500 hover:transform hover:scale-[1.02];
-    @apply shadow-navy-deep hover:shadow-float-hover;
-    animation: slideUp 0.6s ease-out;
-  }
-  
-  .card-float::before {
-    content: '';
-    @apply absolute inset-0 bg-gradient-glow rounded-2xl opacity-0 transition-opacity duration-500;
-    z-index: -1;
-  }
-  
-  .card-float:hover::before {
-    @apply opacity-100;
-  }
-  
-  /* Inputs con glassmorfismo */
+  /* ===== INPUTS LIMPIOS SIN GLASSMORFISMO ===== */
   .input-glass {
     @apply w-full p-4 rounded-xl transition-all duration-300;
-    background: rgba(255, 255, 255, 0.9) !important;
-    backdrop-filter: blur(16px) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    color: #1f2937 !important;
-    font-weight: 500 !important;
-    box-shadow: 
-      inset 0 2px 4px 0 rgba(0, 0, 0, 0.1),
-      0 1px 0 0 rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #1f2937;
+    font-weight: 500;
   }
   
   .input-glass::placeholder {
-    color: #6b7280 !important;
-    font-weight: 400 !important;
+    color: #6b7280;
+    font-weight: 400;
   }
   
   .input-glass:focus {
-    background: rgba(255, 255, 255, 0.95) !important;
-    border-color: #2dd4bf !important;
-    box-shadow: 
-      inset 0 2px 4px 0 rgba(0, 0, 0, 0.1),
-      0 0 0 3px rgba(20, 184, 166, 0.3),
-      0 0 20px rgba(20, 184, 166, 0.2);
+    background: white;
+    border-color: #2dd4bf;
+    outline: 2px solid rgba(20, 184, 166, 0.3);
+    outline-offset: 0;
   }
   
-  .input-glass:hover {
-    background: rgba(255, 255, 255, 0.95) !important;
-    border-color: #5eead4 !important;
-  }
-  
-  /* Efectos de resplandor */
-  .glow-aqua {
-    @apply relative;
-    animation: glowPulse 4s ease-in-out infinite;
-  }
-  
-  .glow-aqua::before {
-    content: '';
-    @apply absolute inset-0 bg-gradient-aqua rounded-xl blur-xl opacity-20;
-    z-index: -1;
-  }
-  
-  /* Navegación mejorada */
+  /* ===== NAVEGACIÓN LIMPIA ===== */
   .nav-link {
     @apply text-gray-300 hover:text-white transition-all duration-300;
-    @apply relative py-2 px-4 rounded-lg;
+    @apply py-2 px-4 rounded-lg;
   }
   
-  .nav-link::before {
-    content: '';
-    @apply absolute inset-0 bg-white/5 backdrop-blur-sm rounded-lg opacity-0 transition-opacity duration-300;
-  }
-  
-  .nav-link:hover::before {
-    @apply opacity-100;
+  .nav-link:hover {
+    @apply bg-white bg-opacity-5;
   }
   
   .nav-link.active {
-    @apply text-aqua-400 bg-aqua-500/10;
+    @apply text-aqua-400;
   }
 }
 
-/* ===== MEJORAS ESPECÍFICAS SEGÚN INSTRUCCIONES ===== */
+/* ===== ELIMINACIÓN COMPLETA DE CAPAS INTERMEDIAS ===== */
+
+/* Eliminar todos los efectos de glassmorfismo */
+.glass-card,
+.glass-nav,
+.card-float {
+  background: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  position: static !important;
+  z-index: auto !important;
+}
+
+/* Eliminar overlays y capas flotantes */
+.glass-card::before,
+.card-float::before,
+.glow-aqua::before {
+  display: none !important;
+}
+
+/* ===== MEJORAS ESPECÍFICAS SEGÚN INSTRUCCIONES MÓVILES ===== */
 
 @media (max-width: 768px) {
   
   /* ===== 1. SIDEBAR (MENÚ LATERAL MOBILE) ===== */
   .sidebar {
     padding: 24px 20px !important;
+    background: rgba(15, 23, 42, 0.95) !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
   }
   
   .sidebar-section {
@@ -177,12 +119,16 @@
     padding: 12px 0 !important;
     line-height: 1.6 !important;
     min-height: 48px !important;
+    background: none !important;
   }
   
   /* ===== 2. FORMULARIO DE CORREO ELECTRÓNICO ===== */
-  .email-subscription .card-float,
+  .email-subscription,
   .email-form-container {
     padding: 16px !important;
+    background: none !important;
+    box-shadow: none !important;
+    border: none !important;
   }
   
   .email-form .input-glass,
@@ -191,6 +137,8 @@
     border-radius: 12px !important;
     font-size: 16px !important;
     min-height: 48px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: none !important;
   }
   
   .email-form .btn-primary,
@@ -204,10 +152,15 @@
   /* ===== 3. TARJETAS INFORMATIVAS DE MEDICAMENTOS ===== */
   .result-card,
   .medication-card,
-  #ficha-medicamento .glass-card {
+  #ficha-medicamento .card,
+  #ficha-medicamento > div > div {
     margin-bottom: 24px !important;
     padding: 20px !important;
     border-radius: 16px !important;
+    background: rgba(15, 23, 42, 0.3) !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
   }
   
   .result-card .icon,
@@ -232,9 +185,15 @@
   
   /* ===== 4. PLANES DE SUSCRIPCIÓN ===== */
   .plan-card,
-  #pricing .glass-card {
+  #pricing .card,
+  #pricing > div > div > div > div {
     padding: 24px 20px !important;
     margin-bottom: 32px !important;
+    background: rgba(15, 23, 42, 0.3) !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 16px !important;
   }
   
   .plan-card ul li,
@@ -252,10 +211,10 @@
   }
   
   /* ===== 5. AJUSTES GENERALES MOBILE ===== */
-  .container,
-  .card-float,
-  .glass-card {
+  .container {
     max-width: 90vw !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
   }
   
   /* Elementos tap-friendly */
@@ -277,28 +236,106 @@
     margin-top: 8px !important;
   }
   
-  /* ===== MEJORAS ADICIONALES ESPECÍFICAS ===== */
+  /* ===== SECCIONES PRINCIPALES SIN CAPAS ===== */
   
-  /* Espaciado entre secciones principales */
-  section {
-    margin-bottom: 32px !important;
+  /* Header limpio */
+  header,
+  .header,
+  nav {
+    background: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
   }
   
-  /* Títulos con mejor espaciado */
+  /* Hero section limpio */
+  #inicio,
+  #hero,
+  .hero-section {
+    background: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Pricing section limpio */
+  #pricing {
+    background: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Testimonials limpio */
+  #testimonials {
+    background: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* FAQ limpio */
+  #faq {
+    background: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Results section limpio */
+  #ficha-medicamento,
+  #results {
+    background: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Footer limpio */
+  footer {
+    background: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  
+  /* ===== CONTENEDORES PRINCIPALES SIN CAPAS ===== */
+  
+  /* Eliminar todos los contenedores intermedios */
+  .card-float,
+  .glass-card,
+  .glass-nav,
+  .floating-card,
+  .backdrop-card {
+    background: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: static !important;
+    z-index: auto !important;
+  }
+  
+  /* Espaciado directo en secciones */
+  section {
+    padding: 32px 16px !important;
+    margin-bottom: 24px !important;
+  }
+  
+  /* Títulos con espaciado directo */
   h1, h2, h3 {
     margin-bottom: 16px !important;
     line-height: 1.4 !important;
+    padding: 0 !important;
   }
   
-  /* Párrafos con mejor legibilidad */
+  /* Párrafos con espaciado directo */
   p {
     line-height: 1.6 !important;
     margin-bottom: 12px !important;
+    padding: 0 !important;
   }
   
-  /* Listas con mejor espaciado */
+  /* Listas con espaciado directo */
   ul, ol {
     margin: 16px 0 !important;
+    padding-left: 20px !important;
   }
   
   li {
@@ -311,9 +348,12 @@
     gap: 20px !important;
   }
   
-  /* Formularios con mejor espaciado */
+  /* Formularios limpios */
   form {
-    padding: 16px !important;
+    padding: 16px 0 !important;
+    background: none !important;
+    box-shadow: none !important;
+    border: none !important;
   }
   
   form input,
@@ -324,43 +364,71 @@
     font-size: 16px !important;
   }
   
-  /* Testimonials con mejor espaciado */
+  /* Testimonials limpios */
   .testimonial-card {
     margin-bottom: 24px !important;
     padding: 20px !important;
+    background: rgba(15, 23, 42, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 16px !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
   }
   
-  /* FAQ con mejor espaciado */
+  /* FAQ limpios */
   .faq-item {
     margin-bottom: 16px !important;
     padding: 16px !important;
+    background: rgba(15, 23, 42, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
   }
   
-  /* Billing toggle con mejor espaciado */
+  /* Billing toggle limpio */
   .billing-toggle {
     margin: 20px 0 !important;
     padding: 8px !important;
+    background: rgba(15, 23, 42, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
   }
   
   .billing-toggle span {
     padding: 12px 16px !important;
     min-height: 48px !important;
+    background: none !important;
+    backdrop-filter: none !important;
+  }
+  
+  .billing-toggle span.active {
+    background: rgba(20, 184, 166, 1) !important;
+    border-radius: 8px !important;
   }
 }
 
-/* ===== RESPONSIVIDAD MÓVIL MANTENIDA ===== */
-
-/* Móviles pequeños (320px - 480px) */
+/* ===== MÓVILES PEQUEÑOS ===== */
 @media (max-width: 480px) {
-  .card-float {
-    padding: 16px !important;
-    margin: 8px !important;
+  .container {
     max-width: 95vw !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
   }
   
-  .glass-card {
+  section {
+    padding: 24px 12px !important;
+  }
+  
+  .result-card,
+  .medication-card,
+  .plan-card,
+  .testimonial-card,
+  .faq-item {
     padding: 16px !important;
-    border-radius: 12px !important;
+    margin-bottom: 20px !important;
   }
   
   .btn-primary {
@@ -379,29 +447,18 @@
   }
 }
 
-/* Mejoras específicas para touch devices */
+/* ===== ELIMINACIÓN DE EFECTOS HOVER EN TOUCH DEVICES ===== */
 @media (hover: none) and (pointer: coarse) {
-  .btn-primary:hover {
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .nav-link:hover {
     transform: none !important;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
-  }
-  
-  .btn-secondary:hover {
-    transform: none !important;
-  }
-  
-  .card-float:hover {
-    transform: none !important;
+    background: initial !important;
   }
 }
 
-/* Soporte para notch en iPhone X+ */
+/* ===== SOPORTE PARA NOTCH ===== */
 @supports (padding: max(0px)) {
-  .glass-nav {
-    padding-left: max(20px, env(safe-area-inset-left)) !important;
-    padding-right: max(20px, env(safe-area-inset-right)) !important;
-  }
-  
   .container {
     padding-left: max(16px, env(safe-area-inset-left)) !important;
     padding-right: max(16px, env(safe-area-inset-right)) !important;
