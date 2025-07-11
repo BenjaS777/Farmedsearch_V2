@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Estilos globales para el tema oscuro */
 @layer base {
   * {
     box-sizing: border-box;
@@ -13,34 +12,136 @@
   }
   
   body {
-    @apply min-h-screen text-white;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    @apply bg-gradient-navy text-white min-h-screen;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 }
 
-/* Componentes personalizados */
 @layer components {
-  /* Efecto glassmorfismo para navegación */
+  /* Glassmorfismo base */
+  .glass-card {
+    @apply bg-gradient-glass backdrop-blur-glass border border-white/10 rounded-2xl;
+    box-shadow: 
+      0 8px 32px 0 rgba(31, 38, 135, 0.37),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  }
+  
   .glass-nav {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    @apply bg-gradient-glass backdrop-blur-intense border-b border-white/10;
+    box-shadow: 
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
   }
   
-  /* Tarjetas flotantes */
-  .card-float {
-    @apply bg-slate-800 border border-slate-700 rounded-xl;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-  }
-  
-  /* Botones principales con color teal */
+  /* Botones con efectos glassmorfismo */
   .btn-primary {
-    @apply bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105;
+    @apply relative bg-gradient-aqua text-white font-semibold py-4 px-8 rounded-xl;
+    @apply transition-all duration-300 transform hover:scale-105;
+    @apply border border-aqua-400/30 backdrop-blur-sm overflow-hidden;
+    box-shadow: 
+      0 4px 15px 0 rgba(20, 184, 166, 0.35),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
   }
   
-  /* Botones secundarios */
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent;
+    @apply transform -skew-x-12 -translate-x-full transition-transform duration-700;
+  }
+  
+  .btn-primary:hover::before {
+    @apply translate-x-full;
+  }
+  
+  .btn-primary:hover {
+    @apply shadow-aqua-glow-intense;
+    box-shadow: 
+      0 8px 25px 0 rgba(20, 184, 166, 0.5),
+      0 0 30px rgba(20, 184, 166, 0.4),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+  }
+  
   .btn-secondary {
-    @apply bg-slate-700 hover:bg-slate-600 text-white font-medium py-2 px-4 rounded-lg border border-slate-600 transition-all duration-200;
+    @apply bg-navy-700/40 text-white font-medium py-3 px-6 rounded-lg;
+    @apply transition-all duration-300 hover:bg-navy-600/50 hover:scale-105;
+    @apply border border-white/10 backdrop-blur-sm;
+    box-shadow: 
+      0 2px 10px 0 rgba(15, 23, 42, 0.3),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  }
+  
+  .btn-secondary:hover {
+    box-shadow: 
+      0 4px 15px 0 rgba(15, 23, 42, 0.4),
+      0 0 20px rgba(100, 116, 139, 0.3),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Tarjetas flotantes con glassmorfismo */
+  .card-float {
+    @apply glass-card p-8 m-4 relative;
+    @apply transition-all duration-500 hover:transform hover:scale-[1.02];
+    @apply shadow-navy-deep hover:shadow-float-hover;
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  .card-float::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-glow rounded-2xl opacity-0 transition-opacity duration-500;
+    z-index: -1;
+  }
+  
+  .card-float:hover::before {
+    @apply opacity-100;
+  }
+  
+  /* Inputs con glassmorfismo */
+  .input-glass {
+    @apply w-full p-4 bg-navy-800/30 backdrop-blur-sm;
+    @apply border border-white/10 rounded-xl text-white placeholder-gray-400;
+    @apply focus:outline-none focus:ring-2 focus:ring-aqua-500/50 focus:border-aqua-400/50;
+    @apply transition-all duration-300;
+    box-shadow: 
+      inset 0 2px 4px 0 rgba(0, 0, 0, 0.1),
+      0 1px 0 0 rgba(255, 255, 255, 0.05);
+  }
+  
+  .input-glass:focus {
+    @apply bg-navy-700/40;
+    box-shadow: 
+      inset 0 2px 4px 0 rgba(0, 0, 0, 0.1),
+      0 0 0 3px rgba(20, 184, 166, 0.1),
+      0 0 20px rgba(20, 184, 166, 0.2);
+  }
+  
+  /* Efectos de resplandor */
+  .glow-aqua {
+    @apply relative;
+    animation: glowPulse 4s ease-in-out infinite;
+  }
+  
+  .glow-aqua::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-aqua rounded-xl blur-xl opacity-20;
+    z-index: -1;
+  }
+  
+  /* Navegación mejorada */
+  .nav-link {
+    @apply text-gray-300 hover:text-white transition-all duration-300;
+    @apply relative py-2 px-4 rounded-lg;
+  }
+  
+  .nav-link::before {
+    content: '';
+    @apply absolute inset-0 bg-white/5 backdrop-blur-sm rounded-lg opacity-0 transition-opacity duration-300;
+  }
+  
+  .nav-link:hover::before {
+    @apply opacity-100;
+  }
+  
+  .nav-link.active {
+    @apply text-aqua-400 bg-aqua-500/10;
   }
 }

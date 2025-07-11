@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
@@ -82,21 +81,21 @@ const Header = () => {
     navigate(path);
   };
 
-  const commonMobileLinkClass = "text-lg font-medium text-foreground hover:text-primary transition-colors py-2 block";
+  const commonMobileLinkClass = "nav-link text-lg font-medium py-2 block";
 
   const MobileMenu = () => (
     <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="md:hidden text-primary-foreground hover:bg-white/20">
+        <Button variant="ghost" size="icon" className="md:hidden text-white hover:bg-white/20">
           <Menu className="h-6 w-6" />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-[300px] sm:w-[350px] bg-background text-foreground">
+      <SheetContent side="left" className="w-[300px] sm:w-[350px] glass-card bg-navy-800/90 text-white border-white/10">
         <SheetHeader>
           <SheetTitle>
             <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-2">
               <img src={LOGO_URL_LIGHT} alt="FarmedSearch Logo" className="h-8" />
-              <span className="text-xl font-bold font-heading text-primary">FarmedSearch</span>
+              <span className="text-xl font-bold font-heading text-aqua-400">FarmedSearch</span>
             </Link>
           </SheetTitle>
         </SheetHeader>
@@ -107,7 +106,7 @@ const Header = () => {
                 <NavLink to="/mi-botiquin" onClick={() => closeMenuAndNavigate('/mi-botiquin')} className={commonMobileLinkClass}>Mi Botiquín</NavLink>
                 <NavLink to="#" onClick={handleNotImplemented} className={commonMobileLinkClass}>Registro de Síntomas</NavLink>
                 <NavLink to="#" onClick={handleNotImplemented} className={commonMobileLinkClass}>Comunidad</NavLink>
-                <hr className="my-4" />
+                <hr className="my-4 border-white/20" />
                 <NavLink to="/mi-cuenta" onClick={() => closeMenuAndNavigate('/mi-cuenta')} className={commonMobileLinkClass}>Mi Perfil</NavLink>
                 {profile?.is_admin && (
                   <NavLink to="/admin" onClick={() => closeMenuAndNavigate('/admin')} className={commonMobileLinkClass}>Panel de Admin</NavLink>
@@ -119,10 +118,10 @@ const Header = () => {
                 <NavLink to="/" onClick={() => closeMenuAndNavigate('/')} className={commonMobileLinkClass}>Inicio</NavLink>
                 <NavLink to="#" onClick={handleNotImplemented} className={commonMobileLinkClass}>Cómo funciona</NavLink>
                 <NavLink to="#" onClick={handleNotImplemented} className={commonMobileLinkClass}>FAQ</NavLink>
-                <hr className="my-4" />
+                <hr className="my-4 border-white/20" />
                 <div className="flex flex-col gap-3 mt-auto">
-                  <Button variant="outline" onClick={() => closeMenuAndNavigate('/iniciar-sesion')}>Iniciar Sesión</Button>
-                  <Button onClick={handleRegisterClick} className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">Registrarse Gratis</Button>
+                  <Button variant="outline" className="btn-secondary" onClick={() => closeMenuAndNavigate('/iniciar-sesion')}>Iniciar Sesión</Button>
+                  <Button onClick={handleRegisterClick} className="btn-primary">Registrarse Gratis</Button>
                 </div>
               </>
             )}
@@ -138,9 +137,9 @@ const Header = () => {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="bg-background/80 backdrop-blur-lg border-b border-white/10 shadow-md sticky top-0 z-50"
+        className="glass-nav sticky top-0 z-50"
       >
-        <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-4">
             <div className="md:hidden">
               <MobileMenu />
@@ -155,13 +154,13 @@ const Header = () => {
                     className="h-10"
                   />
                 </motion.div>
-                <span className="text-2xl font-bold font-heading text-primary-foreground hidden sm:inline">FarmedSearch</span>
+                <span className="text-2xl font-bold font-heading text-white hidden sm:inline">FarmedSearch</span>
             </Link>
             {user && (
-              <div className="hidden md:flex items-center gap-2 bg-primary-foreground/10 px-3 py-1.5 rounded-full cursor-pointer" onClick={handleNotImplemented}>
-                <Users className="h-5 w-5 text-secondary" />
-                <span className="font-medium text-sm">{profile?.full_name || 'Mi Perfil'}</span>
-                <ChevronDown className="h-4 w-4 opacity-70" />
+              <div className="hidden md:flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full cursor-pointer border border-white/20 hover:bg-white/20 transition-all duration-300" onClick={handleNotImplemented}>
+                <Users className="h-5 w-5 text-aqua-400" />
+                <span className="font-medium text-sm text-white">{profile?.full_name || 'Mi Perfil'}</span>
+                <ChevronDown className="h-4 w-4 opacity-70 text-white" />
               </div>
             )}
           </div>
@@ -170,17 +169,17 @@ const Header = () => {
             {user ? (
               <>
                 <div className="flex items-center gap-6">
-                  <Link to="/mi-botiquin" className="text-primary-foreground font-medium hover:text-secondary transition-colors">Mi Botiquín</Link>
-                  <Link to="#" onClick={handleNotImplemented} className="text-primary-foreground font-medium hover:text-secondary transition-colors">Registro de Síntomas</Link>
-                  <Link to="#" onClick={handleNotImplemented} className="text-primary-foreground font-medium hover:text-secondary transition-colors">Comunidad</Link>
+                  <Link to="/mi-botiquin" className="nav-link text-white font-medium">Mi Botiquín</Link>
+                  <Link to="#" onClick={handleNotImplemented} className="nav-link text-white font-medium">Registro de Síntomas</Link>
+                  <Link to="#" onClick={handleNotImplemented} className="nav-link text-white font-medium">Comunidad</Link>
                 </div>
               </>
             ) : (
               <>
                 <div className="flex items-center gap-6">
-                  <Link to="/" className="text-primary-foreground font-medium hover:text-secondary transition-colors">Inicio</Link>
-                  <Link to="#" onClick={handleNotImplemented} className="text-primary-foreground font-medium hover:text-secondary transition-colors">Cómo funciona</Link>
-                  <Link to="#" onClick={handleNotImplemented} className="text-primary-foreground font-medium hover:text-secondary transition-colors">FAQ</Link>
+                  <Link to="/" className="nav-link text-white font-medium">Inicio</Link>
+                  <Link to="#" onClick={handleNotImplemented} className="nav-link text-white font-medium">Cómo funciona</Link>
+                  <Link to="#" onClick={handleNotImplemented} className="nav-link text-white font-medium">FAQ</Link>
                 </div>
               </>
             )}
@@ -189,7 +188,7 @@ const Header = () => {
           <div className="flex items-center gap-2">
             {user ? (
               <>
-                <Button variant="ghost" size="icon" className="rounded-full hover:bg-white/20" onClick={handleNotImplemented}>
+                <Button variant="ghost" size="icon" className="rounded-full hover:bg-white/20 text-white" onClick={handleNotImplemented}>
                   <Bell className="h-5 w-5" />
                 </Button>
                 <DropdownMenu>
@@ -197,34 +196,34 @@ const Header = () => {
                     <Button variant="ghost" className="relative h-10 w-10 rounded-full hover:bg-white/20">
                       <Avatar className="h-10 w-10">
                         <AvatarImage src={user.user_metadata?.avatar_url} alt={profile?.full_name || user.email} />
-                        <AvatarFallback className="bg-secondary text-secondary-foreground font-bold">
+                        <AvatarFallback className="bg-aqua-500 text-white font-bold">
                           {getInitials(profile?.full_name, user.email)}
                         </AvatarFallback>
                       </Avatar>
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-56" align="end" forceMount>
+                  <DropdownMenuContent className="w-56 glass-card bg-navy-800/90 border-white/10 text-white" align="end" forceMount>
                     <DropdownMenuLabel className="font-normal">
                       <div className="flex flex-col space-y-1">
-                        <p className="text-sm font-medium leading-none text-text-title">{profile?.full_name || 'Mi Cuenta'}</p>
-                        <p className="text-xs leading-none text-muted-foreground truncate">
+                        <p className="text-sm font-medium leading-none text-white">{profile?.full_name || 'Mi Cuenta'}</p>
+                        <p className="text-xs leading-none text-gray-300 truncate">
                           {user.email}
                         </p>
                       </div>
                     </DropdownMenuLabel>
-                    <DropdownMenuSeparator />
+                    <DropdownMenuSeparator className="bg-white/20" />
                     {profile?.is_admin && (
-                      <DropdownMenuItem onClick={() => navigate('/admin')}>
+                      <DropdownMenuItem onClick={() => navigate('/admin')} className="text-white hover:bg-white/10">
                         <Shield className="mr-2 h-4 w-4" />
                         <span>Panel de Admin</span>
                       </DropdownMenuItem>
                     )}
-                    <DropdownMenuItem onClick={() => navigate('/mi-cuenta')}>
+                    <DropdownMenuItem onClick={() => navigate('/mi-cuenta')} className="text-white hover:bg-white/10">
                       <User className="mr-2 h-4 w-4" />
                       <span>Mi Perfil</span>
                     </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={handleSignOut}>
+                    <DropdownMenuSeparator className="bg-white/20" />
+                    <DropdownMenuItem onClick={handleSignOut} className="text-white hover:bg-white/10">
                       <LogOut className="mr-2 h-4 w-4" />
                       <span>Cerrar Sesión</span>
                     </DropdownMenuItem>
@@ -233,8 +232,8 @@ const Header = () => {
               </>
             ) : (
               <div className="hidden md:flex items-center gap-2">
-                <Button variant="ghost" className="text-primary-foreground hover:bg-white/20 hover:text-white" onClick={() => navigate('/iniciar-sesion')}>Iniciar Sesión</Button>
-                <Button onClick={handleRegisterClick} className="bg-secondary hover:bg-secondary/90 text-secondary-foreground">Registrarse Gratis</Button>
+                <Button variant="ghost" className="btn-secondary" onClick={() => navigate('/iniciar-sesion')}>Iniciar Sesión</Button>
+                <Button onClick={handleRegisterClick} className="btn-primary">Registrarse Gratis</Button>
               </div>
             )}
           </div>

@@ -47,70 +47,95 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-150px)] bg-background px-4">
+    <div className="flex items-center justify-center min-h-[calc(100vh-150px)] px-4 py-12">
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="w-full max-w-md p-8 space-y-8 bg-card rounded-2xl shadow-soft-lg"
+        initial={{ opacity: 0, y: -20, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="w-full max-w-md"
       >
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-text-title font-heading">Bienvenido de vuelta</h1>
-          <p className="mt-2 text-muted-foreground">Ingresa a tu Botiquín Virtual de FarmedSearch</p>
+        <div className="card-float glow-aqua">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-white font-heading mb-2">
+              Bienvenido de vuelta
+            </h1>
+            <p className="text-gray-300">
+              Ingresa a tu Botiquín Virtual de FarmedSearch
+            </p>
+          </div>
+          
+          <form className="space-y-6" onSubmit={handleSignIn}>
+            <div className="space-y-2">
+              <Label htmlFor="email" className="text-white font-medium">
+                Correo Electrónico
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="tu@correo.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="input-glass"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="password" className="text-white font-medium">
+                Contraseña
+              </Label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="input-glass"
+              />
+            </div>
+            
+            <div className="flex items-center justify-end">
+              <a
+                href="#"
+                onClick={handleForgotPassword}
+                className="text-sm font-medium text-aqua-400 hover:text-aqua-300 transition-colors duration-300"
+              >
+                ¿Olvidaste tu contraseña?
+              </a>
+            </div>
+            
+            <div>
+              <Button 
+                type="submit" 
+                className="btn-primary w-full" 
+                size="lg" 
+                disabled={loading}
+              >
+                {loading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Ingresando...
+                  </>
+                ) : (
+                  '🔐 Ingresar'
+                )}
+              </Button>
+            </div>
+          </form>
+          
+          <div className="mt-8 pt-6 border-t border-white/10">
+            <p className="text-sm text-center text-gray-300">
+              ¿No tienes una cuenta?{' '}
+              <Link 
+                to="/registro" 
+                className="font-medium text-aqua-400 hover:text-aqua-300 transition-colors duration-300"
+              >
+                Regístrate gratis
+              </Link>
+            </p>
+          </div>
         </div>
-        <form className="space-y-6" onSubmit={handleSignIn}>
-          <div className="space-y-2">
-            <Label htmlFor="email">Correo Electrónico</Label>
-            <Input
-              id="email"
-              type="email"
-              placeholder="tu@correo.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="input-modern"
-            />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor="password">Contraseña</Label>
-            <Input
-              id="password"
-              type="password"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="input-modern"
-            />
-          </div>
-          <div className="flex items-center justify-end">
-            <a
-              href="#"
-              onClick={handleForgotPassword}
-              className="text-sm font-medium text-primary hover:underline"
-            >
-              ¿Olvidaste tu contraseña?
-            </a>
-          </div>
-          <div>
-            <Button type="submit" className="w-full bg-primary" size="lg" disabled={loading}>
-              {loading ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Ingresando...
-                </>
-              ) : (
-                'Ingresar'
-              )}
-            </Button>
-          </div>
-        </form>
-        <p className="text-sm text-center text-muted-foreground">
-          ¿No tienes una cuenta?{' '}
-          <Link to="/registro" className="font-medium text-primary hover:underline">
-            Regístrate gratis
-          </Link>
-        </p>
       </motion.div>
     </div>
   );
