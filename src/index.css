@@ -550,3 +550,176 @@
     z-index: 10 !important;
   }
 }
+
+/* ===== CORRECCIÓN ESPECÍFICA PARA BILLING TOGGLE ===== */
+
+@media (max-width: 1024px) {
+  
+  /* Toggle de facturación funcional */
+  .billing-toggle,
+  [data-billing-toggle] {
+    background: rgba(15, 23, 42, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    padding: 8px !important;
+    margin: 20px 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    cursor: pointer !important;
+  }
+  
+  /* Botones del toggle */
+  .billing-toggle span,
+  .billing-toggle button,
+  [data-billing-toggle] span,
+  [data-billing-toggle] button {
+    padding: 12px 16px !important;
+    min-height: 48px !important;
+    background: none !important;
+    border: none !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+    color: #9ca3af !important;
+    font-weight: 500 !important;
+  }
+  
+  /* Estado activo del toggle */
+  .billing-toggle span.active,
+  .billing-toggle button.active,
+  [data-billing-toggle] span.active,
+  [data-billing-toggle] button.active,
+  .billing-toggle span[data-state="active"],
+  .billing-toggle button[data-state="active"] {
+    background: rgba(20, 184, 166, 1) !important;
+    color: white !important;
+    border-radius: 8px !important;
+  }
+  
+  /* Hover states */
+  .billing-toggle span:hover,
+  .billing-toggle button:hover,
+  [data-billing-toggle] span:hover,
+  [data-billing-toggle] button:hover {
+    color: white !important;
+  }
+  
+  /* Asegurar que el toggle sea clickeable */
+  .billing-toggle,
+  [data-billing-toggle] {
+    pointer-events: all !important;
+    position: relative !important;
+    z-index: 10 !important;
+  }
+}
+
+/* Para desktop también */
+@media (min-width: 1025px) {
+  .billing-toggle,
+  [data-billing-toggle] {
+    background: rgba(15, 23, 42, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    padding: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    cursor: pointer !important;
+  }
+  
+  .billing-toggle span,
+  .billing-toggle button,
+  [data-billing-toggle] span,
+  [data-billing-toggle] button {
+    padding: 12px 16px !important;
+    background: none !important;
+    border: none !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+    color: #9ca3af !important;
+  }
+  
+  .billing-toggle span.active,
+  .billing-toggle button.active,
+  [data-billing-toggle] span.active,
+  [data-billing-toggle] button.active {
+    background: rgba(20, 184, 166, 1) !important;
+    color: white !important;
+  }
+}
+
+/* ===== CORRECCIÓN ESPECÍFICA PARA ICONOS EN FORMULARIOS ===== */
+
+/* Inputs con iconos - espaciado correcto */
+.input-glass {
+  padding-left: 3rem !important; /* Espacio para el icono */
+  padding-right: 1rem !important;
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+/* Contenedores de inputs con iconos */
+.relative {
+  position: relative !important;
+}
+
+/* Iconos posicionados correctamente */
+.absolute.left-4,
+.absolute.left-3 {
+  position: absolute !important;
+  left: 1rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 5 !important;
+  pointer-events: none !important;
+  color: #6b7280 !important;
+}
+
+/* Iconos específicos de formularios */
+svg[data-icon="user"],
+svg[data-icon="mail"],
+.lucide-user,
+.lucide-mail {
+  position: absolute !important;
+  left: 1rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 5 !important;
+  pointer-events: none !important;
+  color: #6b7280 !important;
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+}
+
+/* Asegurar que el texto no se superponga */
+input[type="text"],
+input[type="email"] {
+  padding-left: 3rem !important;
+  color: #1f2937 !important;
+  font-weight: 500 !important;
+}
+
+/* Placeholder visible */
+input[type="text"]::placeholder,
+input[type="email"]::placeholder {
+  color: #6b7280 !important;
+  padding-left: 0 !important;
+}
+
+/* Específico para formularios de email subscription */
+.email-subscription input,
+.email-form input {
+  padding-left: 3rem !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #1f2937 !important;
+}
+
+/* Iconos en email subscription */
+.email-subscription .absolute,
+.email-form .absolute {
+  left: 1rem !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 5 !important;
+  color: #6b7280 !important;
+}
