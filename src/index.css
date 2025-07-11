@@ -464,3 +464,89 @@
     padding-right: max(16px, env(safe-area-inset-right)) !important;
   }
 }
+
+/* ===== CORRECCIÓN ESPECÍFICA PARA MENÚ HAMBURGUESA MÓVIL ===== */
+
+@media (max-width: 1024px) {
+  
+  /* Restaurar visibilidad del menú móvil */
+  .mobile-menu,
+  .hamburger-menu,
+  .mobile-nav,
+  .sheet-content,
+  [data-state="open"],
+  .sidebar {
+    background: rgba(15, 23, 42, 0.95) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+    position: fixed !important;
+    z-index: 50 !important;
+  }
+  
+  /* Botón hamburguesa siempre visible */
+  .hamburger-button,
+  .mobile-menu-button,
+  .menu-toggle,
+  button[aria-label*="menu"],
+  button[aria-label*="Menu"],
+  .md\\:hidden button {
+    background: rgba(15, 23, 42, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 6px !important;
+    padding: 8px !important;
+    min-height: 40px !important;
+    min-width: 40px !important;
+    position: relative !important;
+    z-index: 10 !important;
+  }
+  
+  /* Iconos del hamburguesa visibles */
+  .hamburger-icon,
+  .menu-icon,
+  svg {
+    color: white !important;
+    stroke: white !important;
+    fill: white !important;
+  }
+  
+  /* Overlay del menú */
+  .mobile-menu-overlay,
+  .menu-overlay,
+  .sheet-overlay {
+    background: rgba(0, 0, 0, 0.5) !important;
+    position: fixed !important;
+    z-index: 40 !important;
+  }
+  
+  /* Contenido del menú móvil */
+  .mobile-menu-content,
+  .sidebar-content {
+    background: rgba(15, 23, 42, 0.95) !important;
+    padding: 24px 20px !important;
+    position: relative !important;
+    z-index: 51 !important;
+  }
+  
+  /* Items del menú móvil */
+  .mobile-menu-item,
+  .sidebar-menu-item {
+    padding: 12px 0 !important;
+    line-height: 1.6 !important;
+    min-height: 48px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  }
+  
+  /* Navegación en header móvil */
+  .md\\:hidden {
+    display: block !important;
+  }
+  
+  /* Asegurar que el header tenga el botón visible */
+  header .md\\:hidden,
+  .header .md\\:hidden,
+  nav .md\\:hidden {
+    background: none !important;
+    position: relative !important;
+    z-index: 10 !important;
+  }
+}
