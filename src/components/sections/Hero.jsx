@@ -97,7 +97,20 @@ const Hero = ({ onConsultationStart, onConsultationSuccess, onConsultationError,
               }
               throw new Error(errorMessage);
             }
-            resultData = { nombreMedicamento, ...JSON.parse(JSON.parse(responseText).respuesta_json) };
+            
+            // PROTECCIÓN MEJORADA PARA DATOS DE RESPUESTA
+            const parsedResponse = JSON.parse(responseText);
+            const medicationInfo = parsedResponse.respuesta_json ? JSON.parse(parsedResponse.respuesta_json) : {};
+            
+            resultData = { 
+                nombreMedicamento, 
+                ...medicationInfo 
+            };
+
+            // VERIFICACIÓN ADICIONAL DE DATOS VÁLIDOS
+            if (!resultData || typeof resultData !== 'object') {
+                throw new Error('Formato de respuesta inválido');
+            }
 
             toast({ title: 'Consulta Exitosa', description: 'Resultados a continuación.', variant: 'default', className: 'bg-green-600 text-white' });
             onConsultationSuccess(resultData);
