@@ -99,7 +99,7 @@ const EmailSubscription = ({ medicationInfo, medicationName }) => {
               event.preventDefault(); 
               handleSubmit(e); 
             }}
-            className="bg-white hover:bg-white/90 text-destructive-foreground"
+            className="btn-secondary"
           >
             <RefreshCw className="h-4 w-4 mr-2" />
             Reintentar
@@ -117,65 +117,75 @@ const EmailSubscription = ({ medicationInfo, medicationName }) => {
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.7, ease: "circOut" }}
-        className="mt-10 md:mt-12 py-10 md:py-12 bg-card rounded-xl shadow-soft-lg border border-border"
+        className="mt-10 md:mt-12"
       >
-        <div className="container mx-auto px-6 md:px-8 text-center max-w-2xl">
-          {!emailSubmittedSuccessfully && (
-            <>
-              <Mail className="h-12 w-12 md:h-16 md:w-16 text-primary mx-auto mb-6" />
-              <h3 className="text-2xl md:text-3xl font-heading font-semibold text-text-title mb-4">
-                ¿Te gustaría recibir esta información en tu correo?
-              </h3>
-              <form onSubmit={handleSubmit} className="space-y-5 mt-8">
-                <div className="relative">
-                  <User className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                  <Input
-                    type="text"
-                    placeholder="Tu nombre completo"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                    className="w-full input-modern pl-12 pr-4 py-3.5 text-base md:text-lg"
-                    aria-label="Nombre"
-                  />
+        <div className="card-float max-w-2xl mx-auto">
+          <div className="container mx-auto px-6 md:px-8 text-center">
+            {!emailSubmittedSuccessfully && (
+              <>
+                <div className="p-4 rounded-full bg-aqua-500/20 inline-block mb-6">
+                  <Mail className="h-12 w-12 md:h-16 md:w-16 text-aqua-400" />
                 </div>
-                <div className="relative">
-                  <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                  <Input
-                    type="email"
-                    placeholder="ejemplo@correo.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                    className="w-full input-modern pl-12 pr-4 py-3.5 text-base md:text-lg"
-                    aria-label="Correo electrónico"
-                  />
-                </div>
-                <Button 
-                  type="submit" 
-                  disabled={isSubmitting} 
-                  className="w-full btn-3d-cta bg-accent-green hover:bg-accent-green/90 text-secondary-foreground text-base md:text-lg py-3.5"
-                  size="lg"
-                >
-                  {isSubmitting ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Send className="mr-2 h-5 w-5" />}
-                  Enviar por Correo y Suscribirme
-                </Button>
-              </form>
-              <p className="text-xs md:text-sm text-muted-foreground mt-6 px-2">
-                *Al ingresar tus datos, recibirás la ficha consultada y te suscribirás a nuestro boletín semanal con información farmacéutica validada por profesionales.
-              </p>
-            </>
-          )}
-           {emailSubmittedSuccessfully && (
-             <div className="text-center py-6">
-                <h3 className="text-xl md:text-2xl font-heading font-semibold text-text-title mb-2">
-                    ¡Información de <span className="text-primary">{medicationName || 'medicamento'}</span> enviada!
+                <h3 className="text-2xl md:text-3xl font-heading font-semibold text-white mb-4">
+                  ¿Te gustaría recibir esta información en tu correo?
                 </h3>
-                <p className="text-muted-foreground text-sm md:text-base">
-                    Hemos enviado los detalles a {submittedEmailForFeedback}.
+                <p className="text-gray-300 mb-8">
+                  Te enviaremos la ficha completa del medicamento y te suscribirás a nuestro boletín semanal.
                 </p>
-            </div>
-           )}
+                <form onSubmit={handleSubmit} className="space-y-6 mt-8">
+                  <div className="relative">
+                    <User className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 z-10" />
+                    <Input
+                      type="text"
+                      placeholder="Tu nombre completo"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      required
+                      className="input-glass pl-12 pr-4 py-3.5 text-base md:text-lg"
+                      aria-label="Nombre"
+                    />
+                  </div>
+                  <div className="relative">
+                    <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 z-10" />
+                    <Input
+                      type="email"
+                      placeholder="ejemplo@correo.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className="input-glass pl-12 pr-4 py-3.5 text-base md:text-lg"
+                      aria-label="Correo electrónico"
+                    />
+                  </div>
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting} 
+                    className="btn-primary w-full text-base md:text-lg py-3.5"
+                    size="lg"
+                  >
+                    {isSubmitting ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Send className="mr-2 h-5 w-5" />}
+                    📧 Enviar por Correo y Suscribirme
+                  </Button>
+                </form>
+                <p className="text-xs md:text-sm text-gray-400 mt-6 px-2 leading-relaxed">
+                  🔒 <strong className="text-aqua-400">Privacidad garantizada.</strong> Al ingresar tus datos, recibirás la ficha consultada y te suscribirás a nuestro boletín semanal con información farmacéutica validada por profesionales.
+                </p>
+              </>
+            )}
+             {emailSubmittedSuccessfully && (
+               <div className="text-center py-8">
+                  <div className="p-4 rounded-full bg-green-500/20 inline-block mb-6">
+                    <Mail className="h-12 w-12 text-green-400" />
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-heading font-semibold text-white mb-4">
+                      ¡Información de <span className="text-aqua-400">{medicationName || 'medicamento'}</span> enviada!
+                  </h3>
+                  <p className="text-gray-300 text-sm md:text-base">
+                      Hemos enviado los detalles a <strong className="text-aqua-400">{submittedEmailForFeedback}</strong>.
+                  </p>
+              </div>
+             )}
+          </div>
         </div>
       </motion.div>
       {emailSubmittedSuccessfully && (
